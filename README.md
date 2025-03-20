@@ -4,7 +4,7 @@
 
 ## 版本历史
 ```
-1.0.1   2025-03-20      新增java-tools-rapidoc工程
+1.0.1   2025-03-20      新增 stage-rapidoc-server 工程
 
 1.0.0   2025-03-20      基于gitee的开源项目进行hutool版本调整，保留原有资源
 

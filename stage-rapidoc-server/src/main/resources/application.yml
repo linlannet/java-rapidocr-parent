@@ -1,0 +1,9 @@
+# database
+spring:
+    # 环境 dev开发环境|prod生产环境
+    profiles:
+        active: dev
+
+jasypt:
+    encryptor:
+        password: Ll2023!StageEnt
