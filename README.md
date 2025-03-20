@@ -9,7 +9,7 @@
 1.0.0   2025-03-20      基于gitee的开源项目进行hutool版本调整，保留原有资源
 
 ```
-# 感谢RapidOcr-Java，本项目基于RapidOcr-Java扩展java-tools-rapidoc，以下是RapidOcr-Java的资源库及说明
+# 感谢RapidOcr-Java，本项目基于RapidOcr-Java扩展，以下是RapidOcr-Java的资源库及说明
 
 ![](./docs/img/line.png)
 
