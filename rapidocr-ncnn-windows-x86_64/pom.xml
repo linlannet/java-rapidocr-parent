@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.github.mymonstercat</groupId>
-        <artifactId>rapidocr-java</artifactId>
-        <version>0.0.6</version>
+        <groupId>net.linlan.tools</groupId>
+        <artifactId>java-rapidocr-parent</artifactId>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>rapidocr-ncnn-windows-x86_64</artifactId>
@@ -20,11 +20,11 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.github.mymonstercat</groupId>
+            <groupId>net.linlan.tools</groupId>
             <artifactId>rapidocr</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.github.mymonstercat</groupId>
+            <groupId>net.linlan.tools</groupId>
             <artifactId>rapidocr-ncnn-models</artifactId>
         </dependency>
     </dependencies>

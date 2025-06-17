@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>io.github.mymonstercat</groupId>
-        <artifactId>rapidocr-java</artifactId>
-        <version>0.0.6</version>
+        <groupId>net.linlan.tools</groupId>
+        <artifactId>java-rapidocr-parent</artifactId>
+        <version>1.0.0</version>
     </parent>
 
-    <groupId>io.github.mymonstercat</groupId>
+    <groupId>net.linlan.tools</groupId>
     <artifactId>rapidocr-onnx-models</artifactId>
     <version>1.2.2</version>
 
@@ -20,7 +20,7 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>io.github.mymonstercat</groupId>
+            <groupId>net.linlan.tools</groupId>
             <artifactId>rapidocr-common</artifactId>
         </dependency>
     </dependencies>

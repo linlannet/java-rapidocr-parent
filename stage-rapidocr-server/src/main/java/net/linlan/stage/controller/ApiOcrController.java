@@ -25,7 +25,7 @@ public class ApiOcrController {
         paramConfig.setMostAngle(true);
         InferenceEngine engine = InferenceEngine.getInstance(Model.ONNX_PPOCR_V3);
         // 开始识别
-        OcrResult ocrResult = engine.runOcr(getResourcePath("images/test.png"), paramConfig);
+        OcrResult ocrResult = engine.runOcr(getResourcePath("images/test1.jpg"), paramConfig);
         return ocrResult.getStrRes().toString();
     }
 
@@ -35,7 +35,7 @@ public class ApiOcrController {
         paramConfig.setDoAngle(true);
         paramConfig.setMostAngle(true);
         InferenceEngine engine = InferenceEngine.getInstance(Model.ONNX_PPOCR_V3);
-        File file = new File(System.getProperty("java.io.tmpdir") + "ocrJava/test.png");
+        File file = new File(System.getProperty("java.io.tmpdir") + "ocrJava/test1.jpg");
         fileUpload.transferTo(file);
         file.deleteOnExit();
 

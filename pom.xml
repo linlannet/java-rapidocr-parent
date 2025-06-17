@@ -4,41 +4,38 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.mymonstercat</groupId>
-    <artifactId>rapidocr-java</artifactId>
-    <version>0.0.6</version>
+    <groupId>net.linlan.tools</groupId>
+    <artifactId>java-rapidocr-parent</artifactId>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <name>rapid-ocr</name>
-    <url>https://github.com/MyMonsterCat/RapidOcr-Java</url>
+    <name>java-rapidocr-parent</name>
+    <url>https://gitee.com/linlannet/java-rapidocr-parent</url>
     <description>Java代码实现调用RapidOCR(基于PaddleOCR)，适配Mac、Win、Linux，支持最新PP-OCRv4</description>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
     <scm>
-        <url>https://github.com/MyMonsterCat/RapidOcr-Java</url>
-        <connection>https://github.com/MyMonsterCat/RapidOcr-Java.git</connection>
+        <url>https://gitee.com/linlannet/java-rapidocr-parent</url>
+        <connection>https://gitee.com/linlannet/java-rapidocr-parent.git</connection>
     </scm>
     <developers>
         <developer>
-            <name>Monster</name>
-            <email>1264833435@qq.com</email>
-            <timezone>+8</timezone>
+            <id>linlan</id>
+            <name>linlan info</name>
+            <email>linlannet@163.com</email>
+            <organization>Linlan Corporation</organization>
+            <url>https://gitee.com/linlaninfo</url>
+            <roles>
+                <role>Member</role>
+            </roles>
+            <timezone>Asia/Beijing</timezone>
         </developer>
     </developers>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>oss</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>oss</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
+
 
     <modules>
         <module>rapidocr</module>
@@ -61,90 +58,98 @@
         <module>rapidocr-ncnn-linux-x86_64</module>
         <module>rapidocr-ncnn-windows-x86_64</module>
 
-        <module>stage-rapidoc-server</module>
+        <module>stage-rapidocr-server</module>
 
     </modules>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.version>3.1.0</maven.version>
+        <maven.compile.version>3.7.0</maven.compile.version>
+        <maven.source.version>3.3.1</maven.source.version>
+        <maven.javadoc.version>3.5.0</maven.javadoc.version>
+        <maven.pluging.version>3.8.3</maven.pluging.version>
+        <maven.pluging.annotations.version>3.6.1</maven.pluging.annotations.version>
+        <maven.tree.version>3.1.0</maven.tree.version>
+        <maven.gpg.version>3.1.0</maven.gpg.version>
+        <maven.sonatype.version>0.7.0</maven.sonatype.version>
         <model.version.112>1.1.2</model.version.112>
         <model.version.120>1.2.0</model.version.120>
         <model.version.122>1.2.2</model.version.122>
 
-        <ocr.version>0.0.6</ocr.version>
+        <linlan.ocr.version>1.0.0</linlan.ocr.version>
     </properties>
     <dependencyManagement>
         <dependencies>
             <!--      ONNX       -->
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-onnx-models</artifactId>
                 <version>${model.version.122}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-onnx-macosx-arm64</artifactId>
                 <version>${model.version.122}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-onnx-macosx-x86_64</artifactId>
                 <version>${model.version.122}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-onnx-linux-x86_64</artifactId>
                 <version>${model.version.122}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-onnx-windows-x86_64</artifactId>
                 <version>${model.version.122}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-onnx-windows-x86</artifactId>
                 <version>${model.version.122}</version>
             </dependency>
             <!--      NCNN       -->
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-ncnn-models</artifactId>
                 <version>${model.version.112}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-ncnn-macosx-arm64</artifactId>
                 <version>${model.version.120}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-ncnn-macosx-x86_64</artifactId>
                 <version>${model.version.112}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-ncnn-linux-x86_64</artifactId>
                 <version>${model.version.112}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-ncnn-windows-x86_64</artifactId>
                 <version>${model.version.112}</version>
             </dependency>
             <!--      Core       -->
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr</artifactId>
-                <version>${ocr.version}</version>
+                <version>${linlan.ocr.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-common</artifactId>
-                <version>${ocr.version}</version>
+                <version>${linlan.ocr.version}</version>
             </dependency>
             <!--      Other       -->
             <dependency>
@@ -172,7 +177,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>${maven.source.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -186,7 +191,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>${maven.javadoc.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -199,8 +204,54 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- GPG 签名插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven.gpg.version}</version>
+                <executions>
+                    <execution>
+                        <!-- 绑定到 verify 阶段自动签名 -->
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <keyname>0EC989C27692C7D4</keyname>
+                    <!-- 可选配置项 -->
+                    <gpgArguments>
+                        <arg>--pinentry-mode</arg>
+                        <arg>loopback</arg> <!-- 解决无终端环境下的密码输入问题 -->
+                    </gpgArguments>
+                </configuration>
+            </plugin>
+            <!-- 新版本 发布到 https://central.sonatype.org/ 需要采用如下插件 -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>${maven.sonatype.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>sonatype-central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
+    <!-- 配置发布仓库 -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-central</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-central</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
 </project>

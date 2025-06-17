@@ -23,6 +23,6 @@ logging:
         org.springframework: warn
 
 # 文件路径配置
-linlan:
+platform:
     file:
         dir: /www/api/ver/ent/

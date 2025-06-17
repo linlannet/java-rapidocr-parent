@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="LOG_HOME" source="platform.file.dir"/>
+
+    <property name="PATTERN" value="->[lll][%d{yyyy-MM-dd HH:mm:ss.SSS}][%level][%logger:%L][%thread]%n %msg%n%n" />
+    <property name="LOG_LEVEL" value="INFO" />
+
+    <!-- 开发、测试环境 -->
+    <springProfile name="dev">
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="org.springboot.sample" level="INFO" />
+        <logger name="net.linlan" level="DEBUG" />
+        <logger name="org.apache" level="INFO" />
+        <logger name="org.hibernate" level="INFO" />
+        <logger name="org.mybatis.spring" level="INFO"/>
+    </springProfile>
+
+    <!-- 生产环境 -->
+    <springProfile name="prod">
+        <logger name="org.springframework" level="INFO"/>
+        <logger name="org.springboot.sample" level="INFO" />
+        <logger name="net.linlan" level="DEBUG" />
+        <logger name="org.apache" level="INFO" />
+        <logger name="org.hibernate" level="INFO" />
+        <logger name="org.mybatis.spring" level="INFO"/>
+    </springProfile>
+
+    <appender name="FILE_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_HOME}/lll-log-${LOG_LEVEL}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 每个日志文件最大18M，日志时间只保存最近60天，所有日志文件大小加起来不超过totalSizeCap配置 -->
+            <maxFileSize>18MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>5GB</totalSizeCap>
+        </rollingPolicy>
+        <!-- 追加方式记录日志 -->
+        <append>true</append>
+        <!-- 日志文件的格式 -->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${PATTERN}</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+        <!-- 此日志文件只记录info级别的 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>${LOG_LEVEL}</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${LOG_LEVEL}</level>
+        </filter>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE_LOG" />
+    </root>
+
+</configuration>

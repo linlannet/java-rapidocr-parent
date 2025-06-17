@@ -3,25 +3,34 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.linlan.tools</groupId>
-    <artifactId>stage-rapidoc-server</artifactId>
-    <version>1.0.1</version>
+    <groupId>net.linlan.stage</groupId>
+    <artifactId>stage-rapidocr-server</artifactId>
+    <version>1.0.2</version>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.version>3.1.0</maven.version>
+        <maven.compile.version>3.7.0</maven.compile.version>
+        <maven.source.version>3.3.1</maven.source.version>
+        <maven.javadoc.version>3.5.0</maven.javadoc.version>
+        <maven.pluging.version>3.8.3</maven.pluging.version>
+        <maven.pluging.annotations.version>3.6.1</maven.pluging.annotations.version>
+        <maven.tree.version>3.1.0</maven.tree.version>
+        <maven.gpg.version>3.1.0</maven.gpg.version>
+        <maven.sonatype.version>0.7.0</maven.sonatype.version>
         <spring.boot.version>2.7.18</spring.boot.version>
         <spring-framework.version>5.3.31</spring-framework.version>
         <spring-security.version>5.7.10</spring-security.version>
         <lombok.version>1.18.30</lombok.version>
 
-        <linlan.tools.version>2.6.0</linlan.tools.version>
+        <linlan.tools.version>2.6.6</linlan.tools.version>
 
         <model.version.112>1.1.2</model.version.112>
         <model.version.120>1.2.0</model.version.120>
         <model.version.122>1.2.2</model.version.122>
-        <ocr.version>0.0.6</ocr.version>
+        <linlan.ocr.version>1.0.0</linlan.ocr.version>
 
 
     </properties>
@@ -65,14 +74,14 @@
         </dependency>
 
         <dependency>
-            <groupId>io.github.mymonstercat</groupId>
+            <groupId>net.linlan.tools</groupId>
             <artifactId>rapidocr</artifactId>
-            <version>${ocr.version}</version>
+            <version>${linlan.ocr.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.mymonstercat</groupId>
+            <groupId>net.linlan.tools</groupId>
             <artifactId>rapidocr-onnx-platform</artifactId>
-            <version>${ocr.version}</version>
+            <version>${linlan.ocr.version}</version>
         </dependency>
 
         <dependency>
@@ -104,7 +113,18 @@
                 </excludes>
             </resource>
         </resources>
+
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compile.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
             <!-- 跳过单元测试 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -114,21 +134,57 @@
                     <skipTests>true</skipTests>
                 </configuration>
             </plugin>
+            <!-- 由于如下启用造成deploy上传文件较大，暂时注释。生成独立运行jar包，放开如下的注释即可 -->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <version>${spring.boot.version}</version>-->
+<!--                <configuration>-->
+<!--                    <includeSystemScope>true</includeSystemScope>-->
+<!--                    <mainClass>net.linlan.stage.EntApplication</mainClass>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+            <!-- GPG 签名插件 -->
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
-                <configuration>
-                    <includeSystemScope>true</includeSystemScope>
-                    <mainClass>net.linlan.stage.EntApplication</mainClass>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven.gpg.version}</version>
                 <executions>
                     <execution>
+                        <!-- 绑定到 verify 阶段自动签名 -->
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
                         <goals>
-                            <goal>repackage</goal>
+                            <goal>sign</goal>
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <keyname>0EC989C27692C7D4</keyname>
+                    <!-- 可选配置项 -->
+                    <gpgArguments>
+                        <arg>--pinentry-mode</arg>
+                        <arg>loopback</arg> <!-- 解决无终端环境下的密码输入问题 -->
+                    </gpgArguments>
+                </configuration>
+            </plugin>
+            <!-- 新版本 发布到 https://central.sonatype.org/ 需要采用如下插件 -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>${maven.sonatype.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>sonatype-central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -145,7 +201,7 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>io.github.mymonstercat</groupId>
+                    <groupId>net.linlan.tools</groupId>
                     <artifactId>rapidocr-onnx-linux-x86_64</artifactId>
                     <version>1.2.2</version>
                 </dependency>
@@ -156,19 +212,19 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr</artifactId>
-                <version>0.0.6</version>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-ncnn-platform</artifactId>
-                <version>0.0.6</version>
+                <version>1.0.0</version>
             </dependency>
             <dependency>
-                <groupId>io.github.mymonstercat</groupId>
+                <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-onnx-platform</artifactId>
-                <version>0.0.6</version>
+                <version>1.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

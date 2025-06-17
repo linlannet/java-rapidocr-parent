@@ -4,9 +4,14 @@
 
 ## 版本历史
 ```
-1.0.1   2025-03-20      新增 stage-rapidoc-server 工程
+1.0.0   2025-06-17      rapidocr资源调整为1.0.0版本
+为方便资源上传repo，groupId修改为：net.linlan.tools
+打包linux可运行版本：mvn clean package -P linux-x86_64 -Dlinux-build
+打包windows可运行版本：mvn clean install
 
-1.0.0   2025-03-20      基于gitee的开源项目进行hutool版本调整，保留原有资源
+0.0.8   2025-03-20      新增 stage-rapidoc-server 工程
+
+0.0.7   2025-03-03      基于gitee的开源项目进行hutool版本调整，保留原有资源
 
 ```
 # 感谢RapidOcr-Java，本项目基于RapidOcr-Java扩展，以下是RapidOcr-Java的资源库及说明
@@ -38,16 +43,16 @@
 ```xml
 <!--  一般只需要引入一个，CPU端建议使用onnx，移动端建议使用ncnn     -->
 <dependency>
-    <groupId>io.github.mymonstercat</groupId>
+    <groupId>net.linlan.tools</groupId>
     <artifactId>rapidocr-ncnn-platform</artifactId>
-  	<!--  可前往maven中央仓库https://repo1.maven.org/maven2/io/github/mymonstercat/rapidocr/，查看版本      -->
-    <version>0.0.6</version>
+  	<!--  0.0.7之前版本可前往maven中央仓库https://repo1.maven.org/maven2/io/github/mymonstercat/rapidocr/，查看版本      -->
+    <version>1.0.0</version>
 </dependency>
 <dependency>
-    <groupId>io.github.mymonstercat</groupId>
+    <groupId>net.linlan.tools</groupId>
     <artifactId>rapidocr-onnx-platform</artifactId>
-  	<!--  可前往maven中央仓库https://repo1.maven.org/maven2/io/github/mymonstercat/rapidocr/，查看版本      -->
-    <version>0.0.6</version>
+  	<!--  0.0.7之前版本可前往maven中央仓库https://repo1.maven.org/maven2/io/github/mymonstercat/rapidocr/，查看版本      -->
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -61,7 +66,7 @@ public class Main {
         paramConfig.setMostAngle(true);
         InferenceEngine engine = InferenceEngine.getInstance(Model.ONNX_PPOCR_V3);
         // 开始识别
-        OcrResult ocrResult = engine.runOcr(getResourcePath("/images/test.png"), paramConfig);
+        OcrResult ocrResult = engine.runOcr(getResourcePath("/images/test1.jpg"), paramConfig);
         System.out.println(ocrResult.getStrRes().trim());
     }
 
@@ -124,7 +129,7 @@ Mac-Arm64、Mac-Intel、Win10、Win11、CentOS-8均经过测试，项目resource
 
 ```xml
 <dependency>
-    <groupId>io.github.mymonstercat</groupId>
+    <groupId>net.linlan.tools</groupId>
     <artifactId>rapidocr</artifactId>
     <version>0.0.4-light</version>
 </dependency>

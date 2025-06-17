@@ -24,11 +24,11 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>io.github.mymonstercat</groupId>
+                    <groupId>net.linlan.tools</groupId>
                   	<!--     替换成你需要打包的对应平台      -->
                     <artifactId>rapidocr-onnx-linux-x86_64</artifactId>
                   	<!--     版本使用最新      -->
-                    <version>0.0.5</version>
+                    <version>1.0.0</version>
                 </dependency>
             </dependencies>
         </profile>
