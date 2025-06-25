@@ -24,7 +24,7 @@ public class JasyptUtils {
      *
      * @param password 配置文件中设定的加密密码 jasypt.encryptor.password
      * @param value    待加密值
-     * @return
+     * @return  加密后的密码
      */
     public static String encryptPwd(String password, String value) {
         PooledPBEStringEncryptor encryptOr = new PooledPBEStringEncryptor();
@@ -38,7 +38,7 @@ public class JasyptUtils {
      *
      * @param password 配置文件中设定的加密密码 jasypt.encryptor.password
      * @param value    待解密密文
-     * @return
+     * @return  解密后的密码
      */
     public static String decyptPwd(String password, String value) {
         PooledPBEStringEncryptor encryptOr = new PooledPBEStringEncryptor();
@@ -49,7 +49,7 @@ public class JasyptUtils {
 
     /**
      * @param password salt
-     * @return
+     * @return  加密对象
      */
     public static SimpleStringPBEConfig cryptOr(String password) {
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
@@ -64,9 +64,7 @@ public class JasyptUtils {
     }
 
     /**
-     * 1、
-     * 运行此方法
-     * @param args
+     * @param args  参数
      */
     public static void main(String[] args) {
 

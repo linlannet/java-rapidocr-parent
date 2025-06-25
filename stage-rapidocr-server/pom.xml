@@ -5,7 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.linlan.stage</groupId>
     <artifactId>stage-rapidocr-server</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
+    <packaging>jar</packaging>
+    <name>stage-rapidocr-server</name>
+    <description>RapidOCR的验证和服务工程，通过模型的调用，完成多平台适配</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,10 +33,35 @@
         <model.version.112>1.1.2</model.version.112>
         <model.version.120>1.2.0</model.version.120>
         <model.version.122>1.2.2</model.version.122>
-        <linlan.ocr.version>1.0.0</linlan.ocr.version>
+        <model.version.123>1.2.3</model.version.123>
+        <linlan.ocr.version>1.0.1</linlan.ocr.version>
 
 
     </properties>
+    <url>https://gitee.com/linlannet/java-rapidocr-parent/tree/master/stage-rapidoc-server</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://gitee.com/linlannet/java-rapidocr-parent/tree/master/stage-rapidoc-server</url>
+        <connection>https://gitee.com/linlannet/java-rapidocr-parent/tree/master/stage-rapidoc-server</connection>
+    </scm>
+    <developers>
+        <developer>
+            <id>linlan</id>
+            <name>linlan info</name>
+            <email>linlannet@163.com</email>
+            <organization>Linlan Corporation</organization>
+            <url>https://gitee.com/linlaninfo</url>
+            <roles>
+                <role>Member</role>
+            </roles>
+            <timezone>Asia/Beijing</timezone>
+        </developer>
+    </developers>
 
     <dependencies>
         <dependency>
@@ -125,32 +153,66 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-            <!-- 跳过单元测试 -->
+            <!-- 生成源代码包 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20.1</version>
-                <configuration>
-                    <skipTests>true</skipTests>
-                </configuration>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven.source.version}</version>
+                <executions>
+                    <!-- 第一次执行 -->
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <!-- 不指定分类器，生成默认的源代码 JAR 文件 -->
+                    </execution>
+                    <!-- 第二次执行 -->
+                    <execution>
+                        <id>attach-additional-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <!-- 为第二次执行配置分类器 -->
+                        <configuration>
+                            <classifier>additional</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 生成Java文档包 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <!-- 由于如下启用造成deploy上传文件较大，暂时注释。生成独立运行jar包，放开如下的注释即可 -->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--                <version>${spring.boot.version}</version>-->
-<!--                <configuration>-->
-<!--                    <includeSystemScope>true</includeSystemScope>-->
-<!--                    <mainClass>net.linlan.stage.EntApplication</mainClass>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <goals>-->
-<!--                            <goal>repackage</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                    <mainClass>net.linlan.stage.EntApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- GPG 签名插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -189,7 +251,10 @@
         </plugins>
     </build>
 
-    <!--  打包命令：mvn clean package -P linux-x86_64 -Dlinux-build  -->
+    <!--
+    打包命令：mvn clean package -P linux-x86_64 -Dlinux-build 加载支持linux架构x86_64的so库
+    打包命令：mvn clean package -P linux-arm64 -Dlinux-build 加载支持linux架构arm64的so库
+     -->
     <profiles>
         <profile>
             <id>linux-x86_64</id>
@@ -203,7 +268,33 @@
                 <dependency>
                     <groupId>net.linlan.tools</groupId>
                     <artifactId>rapidocr-onnx-linux-x86_64</artifactId>
-                    <version>1.2.2</version>
+                    <version>${model.version.122}</version>
+                </dependency>
+                <dependency>
+                    <groupId>net.linlan.tools</groupId>
+                    <artifactId>rapidocr-ncnn-linux-x86_64</artifactId>
+                    <version>${model.version.112}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>linux-arm64</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <arch>arm64</arch>
+                </os>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>net.linlan.tools</groupId>
+                    <artifactId>rapidocr-onnx-linux-arm64</artifactId>
+                    <version>${model.version.123}</version>
+                </dependency>
+                <dependency>
+                    <groupId>net.linlan.tools</groupId>
+                    <artifactId>rapidocr-ncnn-linux-arm64</artifactId>
+                    <version>${model.version.120}</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -214,20 +305,31 @@
             <dependency>
                 <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr</artifactId>
-                <version>1.0.0</version>
+                <version>${linlan.ocr.version}</version>
             </dependency>
             <dependency>
                 <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-ncnn-platform</artifactId>
-                <version>1.0.0</version>
+                <version>${linlan.ocr.version}</version>
             </dependency>
             <dependency>
                 <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-onnx-platform</artifactId>
-                <version>1.0.0</version>
+                <version>${linlan.ocr.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <!-- 配置发布仓库 -->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-central</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-central</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
 </project>

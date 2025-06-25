@@ -20,6 +20,7 @@ server:
 logging:
     level:
         net.linlan: debug
+        io.github: debug
         org.springframework: warn
 
 # 文件路径配置

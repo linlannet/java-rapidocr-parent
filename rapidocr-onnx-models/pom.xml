@@ -6,11 +6,11 @@
     <parent>
         <groupId>net.linlan.tools</groupId>
         <artifactId>java-rapidocr-parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
-    <groupId>net.linlan.tools</groupId>
     <artifactId>rapidocr-onnx-models</artifactId>
+    <name>rapidocr-onnx-models</name>
     <version>1.2.2</version>
 
     <properties>

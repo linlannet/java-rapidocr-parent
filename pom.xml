@@ -6,12 +6,60 @@
 
     <groupId>net.linlan.tools</groupId>
     <artifactId>java-rapidocr-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>pom</packaging>
 
     <name>java-rapidocr-parent</name>
-    <url>https://gitee.com/linlannet/java-rapidocr-parent</url>
     <description>Java代码实现调用RapidOCR(基于PaddleOCR)，适配Mac、Win、Linux，支持最新PP-OCRv4</description>
+
+    <modules>
+        <module>rapidocr</module>
+        <module>rapidocr-common</module>
+
+        <module>rapidocr-onnx-platform</module>
+        <module>rapidocr-onnx-models</module>
+
+        <module>rapidocr-onnx-macosx-arm64</module>
+        <module>rapidocr-onnx-macosx-x86_64</module>
+        <module>rapidocr-onnx-linux-x86_64</module>
+        <module>rapidocr-onnx-linux-arm64</module>
+        <module>rapidocr-onnx-windows-x86_64</module>
+        <module>rapidocr-onnx-windows-x86</module>
+
+        <module>rapidocr-ncnn-platform</module>
+        <module>rapidocr-ncnn-models</module>
+
+        <module>rapidocr-ncnn-macosx-arm64</module>
+        <module>rapidocr-ncnn-macosx-x86_64</module>
+        <module>rapidocr-ncnn-linux-x86_64</module>
+        <module>rapidocr-ncnn-linux-arm64</module>
+        <module>rapidocr-ncnn-windows-x86_64</module>
+
+        <module>stage-rapidocr-server</module>
+
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.version>3.1.0</maven.version>
+        <maven.compile.version>3.7.0</maven.compile.version>
+        <maven.source.version>3.3.1</maven.source.version>
+        <maven.javadoc.version>3.5.0</maven.javadoc.version>
+        <maven.pluging.version>3.8.3</maven.pluging.version>
+        <maven.pluging.annotations.version>3.6.1</maven.pluging.annotations.version>
+        <maven.tree.version>3.1.0</maven.tree.version>
+        <maven.gpg.version>3.1.0</maven.gpg.version>
+        <maven.sonatype.version>0.7.0</maven.sonatype.version>
+        <model.version.112>1.1.2</model.version.112>
+        <model.version.120>1.2.0</model.version.120>
+        <model.version.122>1.2.2</model.version.122>
+
+        <linlan.ocr.version>1.0.1</linlan.ocr.version>
+    </properties>
+
+    <url>https://gitee.com/linlannet/java-rapidocr-parent</url>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -36,51 +84,6 @@
         </developer>
     </developers>
 
-
-    <modules>
-        <module>rapidocr</module>
-        <module>rapidocr-common</module>
-
-        <module>rapidocr-onnx-platform</module>
-        <module>rapidocr-onnx-models</module>
-
-        <module>rapidocr-onnx-macosx-arm64</module>
-        <module>rapidocr-onnx-macosx-x86_64</module>
-        <module>rapidocr-onnx-linux-x86_64</module>
-        <module>rapidocr-onnx-windows-x86_64</module>
-        <module>rapidocr-onnx-windows-x86</module>
-
-        <module>rapidocr-ncnn-platform</module>
-        <module>rapidocr-ncnn-models</module>
-
-        <module>rapidocr-ncnn-macosx-arm64</module>
-        <module>rapidocr-ncnn-macosx-x86_64</module>
-        <module>rapidocr-ncnn-linux-x86_64</module>
-        <module>rapidocr-ncnn-windows-x86_64</module>
-
-        <module>stage-rapidocr-server</module>
-
-    </modules>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <maven.version>3.1.0</maven.version>
-        <maven.compile.version>3.7.0</maven.compile.version>
-        <maven.source.version>3.3.1</maven.source.version>
-        <maven.javadoc.version>3.5.0</maven.javadoc.version>
-        <maven.pluging.version>3.8.3</maven.pluging.version>
-        <maven.pluging.annotations.version>3.6.1</maven.pluging.annotations.version>
-        <maven.tree.version>3.1.0</maven.tree.version>
-        <maven.gpg.version>3.1.0</maven.gpg.version>
-        <maven.sonatype.version>0.7.0</maven.sonatype.version>
-        <model.version.112>1.1.2</model.version.112>
-        <model.version.120>1.2.0</model.version.120>
-        <model.version.122>1.2.2</model.version.122>
-
-        <linlan.ocr.version>1.0.0</linlan.ocr.version>
-    </properties>
     <dependencyManagement>
         <dependencies>
             <!--      ONNX       -->
@@ -97,6 +100,11 @@
             <dependency>
                 <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-onnx-macosx-x86_64</artifactId>
+                <version>${model.version.122}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.linlan.tools</groupId>
+                <artifactId>rapidocr-onnx-linux-x86_64</artifactId>
                 <version>${model.version.122}</version>
             </dependency>
             <dependency>
@@ -163,6 +171,7 @@
     </dependencyManagement>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -173,34 +182,56 @@
             </resource>
         </resources>
         <plugins>
-            <!-- source code -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compile.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!-- 生成源代码包 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>${maven.source.version}</version>
                 <executions>
+                    <!-- 第一次执行 -->
                     <execution>
                         <id>attach-sources</id>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
+                        <phase>package</phase>
+                        <!-- 不指定分类器，生成默认的源代码 JAR 文件 -->
+                    </execution>
+                    <!-- 第二次执行 -->
+                    <execution>
+                        <id>attach-additional-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <!-- 为第二次执行配置分类器 -->
+                        <configuration>
+                            <classifier>additional</classifier>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
-            <!-- javadoc -->
+            <!-- 生成Java文档包 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven.javadoc.version}</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
+                        <id>attach-javadocs</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
-                        <configuration>
-                            <additionalOptions>-Xdoclint:none</additionalOptions>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

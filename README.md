@@ -4,6 +4,11 @@
 
 ## 版本历史
 ```
+1.0.1   2025-06-25      rapidocr资源增加两个包：ncnn的linux-arm64和onnx的linux-arm64
+linux-arm64的ncnn版本为1.2.0
+linux-arm64的onnx版本为1.2.3
+profile内增加linux-arm64配置，方便打包输出
+
 1.0.0   2025-06-17      rapidocr资源调整为1.0.0版本
 为方便资源上传repo，groupId修改为：net.linlan.tools
 打包linux可运行版本：mvn clean package -P linux-x86_64 -Dlinux-build
