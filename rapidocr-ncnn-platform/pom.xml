@@ -91,6 +91,22 @@
                 </dependency>
             </dependencies>
         </profile>
+
+        <profile>
+            <id>linux-arm64</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <arch>arm64</arch>
+                </os>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>net.linlan.tools</groupId>
+                    <artifactId>rapidocr-ncnn-linux-arm64</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
     </profiles>
 
 

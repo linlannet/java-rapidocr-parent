@@ -36,7 +36,7 @@
                     <artifactId>rapidocr-onnx-macosx-arm64</artifactId>
                 </dependency>
             </dependencies>
-        </profile>
+        </profile>c
 
         <profile>
             <id>macosx-x86_64</id>
@@ -110,7 +110,21 @@
                 </dependency>
             </dependencies>
         </profile>
-
+        <profile>
+            <id>linux-arm64</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <arch>arm64</arch>
+                </os>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>net.linlan.tools</groupId>
+                    <artifactId>rapidocr-onnx-linux-arm64</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
 
     </profiles>
 
