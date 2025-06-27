@@ -4,6 +4,7 @@
 
 ## 版本历史
 ```
+1.0.1   2025-06-27      arm64的版本升级为1.2.3
 1.0.1   2025-06-25      rapidocr资源增加两个包：ncnn的linux-arm64和onnx的linux-arm64
 linux-arm64的ncnn版本为1.2.0
 linux-arm64的onnx版本为1.2.3

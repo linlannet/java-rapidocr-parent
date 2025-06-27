@@ -11,7 +11,7 @@
 
     <artifactId>rapidocr-ncnn-linux-arm64</artifactId>
     <name>rapidocr-ncnn-linux-arm64</name>
-    <version>1.2.0</version>
+    <version>1.2.3</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

@@ -55,6 +55,7 @@
         <model.version.112>1.1.2</model.version.112>
         <model.version.120>1.2.0</model.version.120>
         <model.version.122>1.2.2</model.version.122>
+        <model.version.123>1.2.3</model.version.123>
 
         <linlan.ocr.version>1.0.1</linlan.ocr.version>
     </properties>
@@ -109,8 +110,8 @@
             </dependency>
             <dependency>
                 <groupId>net.linlan.tools</groupId>
-                <artifactId>rapidocr-onnx-linux-x86_64</artifactId>
-                <version>${model.version.122}</version>
+                <artifactId>rapidocr-onnx-linux-arm64</artifactId>
+                <version>${model.version.123}</version>
             </dependency>
             <dependency>
                 <groupId>net.linlan.tools</groupId>
@@ -142,6 +143,11 @@
                 <groupId>net.linlan.tools</groupId>
                 <artifactId>rapidocr-ncnn-linux-x86_64</artifactId>
                 <version>${model.version.112}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.linlan.tools</groupId>
+                <artifactId>rapidocr-ncnn-linux-arm64</artifactId>
+                <version>${model.version.123}</version>
             </dependency>
             <dependency>
                 <groupId>net.linlan.tools</groupId>

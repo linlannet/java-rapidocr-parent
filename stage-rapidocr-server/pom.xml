@@ -294,7 +294,7 @@
                 <dependency>
                     <groupId>net.linlan.tools</groupId>
                     <artifactId>rapidocr-ncnn-linux-arm64</artifactId>
-                    <version>${model.version.120}</version>
+                    <version>${model.version.123}</version>
                 </dependency>
             </dependencies>
         </profile>
