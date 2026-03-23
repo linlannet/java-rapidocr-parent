@@ -52,6 +52,9 @@
 
 ## :saxophone: 分支说明
 
-- main: 主分支，多模块打包
-- light-0.0.4: 旧版本
-- dev: 开发分支
+- `master/main`: 稳定发版分支，**禁止直接提交**
+- `develop`: 开发主分支，**所有代码在此分支开发**
+- `feat/xxx`: 功能分支，从 develop 拉取
+- `light-0.0.4`: 旧版本（已归档）
+
+> **重要**：所有代码开发必须在 develop 分支进行，合并到 master/main 需要通过 Pull Request。

@@ -50,28 +50,19 @@ Springboot
 
 ## 参与贡献
 1.  Fork 本仓库
-2.  新建 Feat_1.0.0 分支
-3.  提交代码
+2.  从 develop 分支拉取新功能分支（如 `feat/xxx`），**禁止直接在 master/main/develop 分支操作**
+3.  提交代码到功能分支
+4.  新建 Pull Request 到 develop 分支，等待 review
+5.  develop 分支 review 通过后，再合并到 master/main
+6.  创建和提交 tag（如需发版）
 ```
 git config user.name linlaninfo
 git config user.email linlannet@163.com
 git config --global --list
 git config --list
 ```
-4. 新建 Pull Request
-5. 创建和提交tag
-```
-创建
-git tag -a 2.1.2 -m "进行gov的默认stage工程更新，独立资源，删除对gov框架的依赖，可独立运行"
-查看
-git tag
-提交
-git push origin --tags
-删除
-git tag -d 2.1.1
+7. 本地编译：`mvn clean install`
+8. 发版发布：`mvn clean deploy`
 
-本地编译：mvn clean install
-发布到github：mvn clean deploy
-
-```
-6. 其他
+> **分支规范**：`master/main` = 稳定发版分支，`develop` = 开发主分支，功能分支从 develop 拉取。
+> **重要**：必须 `mvn compile` 编译通过后才能 commit 和 push，禁止提交无法编译的代码。
