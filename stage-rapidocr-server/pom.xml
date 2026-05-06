@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.linlan.stage</groupId>
     <artifactId>stage-rapidocr-server</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <packaging>jar</packaging>
     <name>stage-rapidocr-server</name>
     <description>RapidOCR的验证和服务工程，通过模型的调用，完成多平台适配</description>
@@ -34,7 +34,7 @@
         <model.version.120>1.2.0</model.version.120>
         <model.version.122>1.2.2</model.version.122>
         <model.version.123>1.2.3</model.version.123>
-        <linlan.ocr.version>1.0.1</linlan.ocr.version>
+        <linlan.ocr.version>1.0.2</linlan.ocr.version>
 
 
     </properties>
@@ -197,22 +197,22 @@
                 </executions>
             </plugin>
             <!-- 由于如下启用造成deploy上传文件较大，暂时注释。生成独立运行jar包，放开如下的注释即可 -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
-                <configuration>
-                    <includeSystemScope>true</includeSystemScope>
-                    <mainClass>net.linlan.stage.EntApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <version>${spring.boot.version}</version>-->
+<!--                <configuration>-->
+<!--                    <includeSystemScope>true</includeSystemScope>-->
+<!--                    <mainClass>net.linlan.stage.EntApplication</mainClass>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>repackage</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
             <!-- GPG 签名插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

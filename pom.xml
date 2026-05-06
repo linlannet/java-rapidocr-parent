@@ -6,7 +6,7 @@
 
     <groupId>net.linlan.tools</groupId>
     <artifactId>java-rapidocr-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>pom</packaging>
 
     <name>java-rapidocr-parent</name>
@@ -57,7 +57,7 @@
         <model.version.122>1.2.2</model.version.122>
         <model.version.123>1.2.3</model.version.123>
 
-        <linlan.ocr.version>1.0.1</linlan.ocr.version>
+        <linlan.ocr.version>1.0.2</linlan.ocr.version>
     </properties>
 
     <url>https://gitee.com/linlannet/java-rapidocr-parent</url>
